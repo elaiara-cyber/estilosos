@@ -1,17 +1,10 @@
 {
   "name": "api-landing-page",
   "version": "1.0.0",
-  "description": "API para captura de leads da Landing Page",
-  "main": "src/server.js",
+  "description": "API em Python (FastAPI + Uvicorn) para captura de leads da Landing Page",
+  "main": "main.py",
   "scripts": {
-    "start": "node src/server.js",
-    "dev": "node --watch src/server.js"
-  },
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.7",
-    "express": "^4.21.2",
-    "helmet": "^8.0.0",
-    "validator": "^13.12.0"
+    "start": "python main.py",
+    "dev": "python main.py"
   }
 }

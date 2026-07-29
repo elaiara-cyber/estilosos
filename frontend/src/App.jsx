@@ -3,6 +3,7 @@ import Header from './components/Header'
 import Hero from './components/Hero'
 import Beneficios from './components/Beneficios'
 import FormularioLead from './components/FormularioLead'
+import ModalLeads from './components/ModalLeads'
 import Toast from './components/Toast'
 import Footer from './components/Footer'
 
@@ -12,6 +13,8 @@ export default function App() {
     tipo: 'sucesso',
     visivel: false
   })
+
+  const [modalLeadsAberto, setModalLeadsAberto] = useState(false)
 
   const exibirToastSucesso = (mensagem) => {
     setToastState({ mensagem, tipo: 'sucesso', visivel: true })
@@ -26,17 +29,26 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
-      <Header />
+    <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100 selection:bg-cyan-500 selection:text-white">
+      <Header aoAbrirModalLeads={() => setModalLeadsAberto(true)} />
+      
       <main className="flex-1">
-        <Hero />
+        <Hero aoAbrirModalLeads={() => setModalLeadsAberto(true)} />
         <Beneficios />
         <FormularioLead
           emSucesso={exibirToastSucesso}
           emErro={exibirToastErro}
+          aoAbrirModalLeads={() => setModalLeadsAberto(true)}
         />
       </main>
-      <Footer />
+
+      <Footer aoAbrirModalLeads={() => setModalLeadsAberto(true)} />
+
+      <ModalLeads
+        aberto={modalLeadsAberto}
+        aoFechar={() => setModalLeadsAberto(false)}
+      />
+
       <Toast
         mensagem={toastState.mensagem}
         tipo={toastState.tipo}
