@@ -11,8 +11,9 @@ caminho_env = Path(__file__).resolve().parent.parent / '.env'
 load_dotenv(dotenv_path=caminho_env)
 
 from .rotas.lead_rotas import router as lead_router
+from .rotas.quiz_rotas import router as quiz_router
 
-app = FastAPI(title="API Landing Page Lead Capture - Python")
+app = FastAPI(title="API OutfitSite - Python")
 
 # Configuração de CORS
 origem_permitida = os.getenv("ORIGEM_PERMITIDA", "*")
@@ -28,6 +29,7 @@ app.add_middleware(
 
 # Registra rotas da API
 app.include_router(lead_router, prefix="/api")
+app.include_router(quiz_router, prefix="/api")
 
 @app.get("/api/health")
 def health_check():

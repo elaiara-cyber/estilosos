@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Header({ aoAbrirModalLeads }) {
+export default function Header({ aoAbrirModalLeads, aoVoltarLanding }) {
   return (
     <>
       <header className="fixed top-0 left-0 w-full z-50 bg-slate-950/80 backdrop-blur-xl border-b border-slate-800/80 shadow-2xl">
@@ -31,6 +31,15 @@ export default function Header({ aoAbrirModalLeads }) {
 
           {/* Nav Links & Actions */}
           <div className="flex items-center gap-4">
+            {aoVoltarLanding && (
+              <button
+                onClick={aoVoltarLanding}
+                className="hidden md:inline-block text-xs font-semibold text-slate-300 hover:text-purple-400 transition py-2 px-3 rounded-lg hover:bg-slate-900"
+              >
+                ← Voltar
+              </button>
+            )}
+
             <a
               href="#tecnologias"
               className="hidden md:inline-block text-xs font-semibold text-slate-300 hover:text-cyan-400 transition py-2 px-3 rounded-lg hover:bg-slate-900"

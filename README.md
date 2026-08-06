@@ -1,99 +1,111 @@
-# 🎓 Sistema Acadêmico de Captura de Leads — React 18 + Python (FastAPI) + SQLite
+# Sistema Academico de Captura de Leads e Recomendador de Estilo — React 18 + Python (FastAPI) + SQLite
 
-> **Projeto Acadêmico Full Stack:** Aplicação moderna baseada em componentes reativos em **React 18 (Vite + Tailwind CSS)** com estética **Dark Glassmorphic** e API RESTful robusta de alta performance em **Python 3 (FastAPI + Uvicorn)** com banco de dados **SQLite**.
-
----
-
-## 📋 Sobre o Projeto
-
-Este projeto consiste em um **Sistema Acadêmico de Captura e Gestão de Leads** desenvolvido para demonstrar a integração de ponta a ponta entre uma interface web reativa em **React 18** e um servidor de API em **Python (FastAPI)** com persistência relacional no **SQLite**.
-
-A aplicação conta com uma interface futurista baseada em **Dark Glassmorphism**, tipografia com **Google Fonts**, validação e sanitização estrita de dados no servidor contra ataques XSS, além de um **modal interativo em tempo real** para consultar os leads gravados diretamente no SQLite via API.
+> **Projeto Academico Full Stack:** Aplicacao moderna baseada em componentes reativos em **React 18 (Vite + Tailwind CSS)** com estetica **Dark Glassmorphic** e API RESTful robusta de alta performance em **Python 3 (FastAPI + Uvicorn)** com banco de dados **SQLite**.
 
 ---
 
-## 🎨 Destaques da Interface & Experiência do Usuário
+## Sobre o Projeto
 
-- 🌌 **Estética Dark Glassmorphism:** Cores futuristas (tons de slate, ciano React e azul Python), transparências com `backdrop-blur` e efeitos neon (*glow*).
-- 🔤 **Tipografia Importada (Google Fonts):** Utilização das fontes *Plus Jakarta Sans* para a interface e *Fira Code* para amostras de código.
-- 💻 **Visualizador Interativo de Código:** Abas interativas no banner principal alternando entre trechos de código do backend em **Python (FastAPI)** e do frontend em **React (Hooks)**.
-- 🗄️ **Inspector de Banco de Dados ao Vivo (`ModalLeads.jsx`):** Modal flutuante que permite aos usuários e avaliadores consultar e atualizar em tempo real a lista de leads cadastrados no SQLite via rota `GET /api/leads`.
+Este projeto consiste em um **Sistema Academico de Captura e Gestao de Leads** e um **Recomendador de Estilo Pessoal** desenvolvidos para demonstrar a integracao de ponta a ponta entre uma interface web reativa em **React 18** e um servidor de API em **Python (FastAPI)** com persistencia relacional no **SQLite**.
+
+A aplicacao conta com:
+- Interface futurista baseada em **Dark Glassmorphism**, tipografia com **Google Fonts**, validacao e sanitizacao estrita de dados no servidor contra ataques XSS.
+- **Modal interativo em tempo real** para consultar os leads gravados diretamente no SQLite via API.
+- **Quiz interativo de estilo** com 6 perguntas, 5 arquétipos de moda (Minimalista, Streetwear, Classico, Boho, Casual Chic), barra de progresso e pagina de resultados com dicas praticas.
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## Destaques da Interface & Experiencia do Usuario
+
+- **Estetica Dark Glassmorphism:** Cores futuristas (tons de slate, ciano React, roxo e azul Python), transparencias com `backdrop-blur` e efeitos neon (*glow*).
+- **Tipografia Importada (Google Fonts):** Utilizacao das fontes *Plus Jakarta Sans* para a interface e *Fira Code* para amostras de codigo.
+- **Visualizador Interativo de Codigo:** Abas interativas no banner principal alternando entre trechos de codigo do backend em **Python (FastAPI)** e do frontend em **React (Hooks)**.
+- **Inspector de Banco de Dados ao Vivo (`ModalLeads.jsx`):** Modal flutuante que permite aos usuarios e avaliadores consultar e atualizar em tempo real a lista de leads cadastrados no SQLite via rota `GET /api/leads`.
+- **Quiz de Estilo Interativo (`Quiz.jsx`):** Navegacao fluida entre 6 perguntas com barra de progresso animada, selecao visual de opcoes e integracao assincrona com a API Python.
+- **Pagina de Resultados (`ResultadoQuiz.jsx`):** Exibicao do arquétipo de estilo vencedor, estilos secundarios compativeis, barra de pontuacao completa e dicas praticas de moda.
+
+---
+
+## Tecnologias Utilizadas
 
 ### **Frontend (React 18 + Vite + Tailwind CSS)**
-- **React 18** — Biblioteca declarativa e baseada em componentes reativos para criação de interfaces modernas.
-- **Vite** — Ferramenta de build de última geração com Hot Module Replacement (HMR) instantâneo.
-- **Tailwind CSS v3** — Framework CSS utilitário para estilização rápida, responsiva e elegante.
-- **JSX & React Hooks** — Gerenciamento de estado de formulário (`useState`, `useEffect`), máscaras dinâmicas e integração assíncrona com a API via `fetch`.
+- **React 18** — Biblioteca declarativa e baseada em componentes reativos para criacao de interfaces modernas.
+- **Vite** — Ferramenta de build de ultima geracao com Hot Module Replacement (HMR) instantaneo.
+- **Tailwind CSS v3** — Framework CSS utilitario para estilizacao rapida, responsiva e elegante.
+- **JSX & React Hooks** — Gerenciamento de estado de formulario (`useState`, `useEffect`), mascaras dinamicas e integracao assincrona com a API via `fetch`.
 
 ### **Backend (Python 3 + FastAPI + SQLite)**
 - **Python 3.13** — Linguagem principal de desenvolvimento do backend.
-- **FastAPI** — Framework web moderno e de altíssima performance para construção de APIs RESTful.
-- **Uvicorn** — Servidor ASGI ultrarrápido para execução da aplicação FastAPI.
-- **Pydantic & Validadores** — Sanitização de dados contra ataques XSS (`html.escape`), tratamento de erros e validação de e-mails/telefones.
+- **FastAPI** — Framework web moderno e de altissima performance para construcao de APIs RESTful.
+- **Uvicorn** — Servidor ASGI ultrarrapido para execucao da aplicacao FastAPI.
+- **Pydantic & Validadores** — Sanitizacao de dados contra ataques XSS (`html.escape`), tratamento de erros e validacao de emails/telefones.
 - **SQLite (sqlite3)** — Banco de dados relacional leve e embutido com suporte a *Prepared Statements* e modo WAL (Write-Ahead Logging).
-- **CORS Middleware** — Permissão e controle de requisições Cross-Origin entre React e Python.
+- **CORS Middleware** — Permissao e controle de requisicoes Cross-Origin entre React e Python.
 
 ---
 
-## 📁 Estrutura de Arquivos do Projeto
+## Estrutura de Arquivos do Projeto
 
 ```text
-testereact/
+outfitsite/
 ├── api/                          # Backend API RESTful em Python
 │   ├── db/                       # Banco de dados SQLite (criado em runtime)
 │   │   └── landing.db            # Arquivo da base de dados local
 │   ├── src/
 │   │   ├── config/
-│   │   │   └── conexao_banco.py  # Conexão SQLite (row_factory dict, WAL mode)
+│   │   │   └── conexao_banco.py  # Conexao SQLite (row_factory dict, WAL mode)
 │   │   ├── controladores/
-│   │   │   └── lead_controlador.py# Lógica de negócio (cadastrar e listar leads)
+│   │   │   ├── lead_controlador.py  # Logica de negocio (cadastrar e listar leads)
+│   │   │   └── quiz_controlador.py  # Logica do quiz (perguntas, respostas, resultado)
 │   │   ├── rotas/
-│   │   │   └── lead_rotas.py     # Endpoints HTTP da aplicação (/api/leads)
+│   │   │   ├── lead_rotas.py     # Endpoints HTTP de leads (/api/leads)
+│   │   │   └── quiz_rotas.py     # Endpoints HTTP do quiz (/api/quiz/*)
 │   │   ├── utilitarios/
-│   │   │   └── validadores.py    # Funções de sanitização e validação
-│   │   └── app.py                # FastAPI app, CORS, estáticos e fallback SPA
-│   ├── .env                      # Variáveis de ambiente (PORT=3000, ORIGEM_PERMITIDA=*)
-│   ├── iniciar_banco.py          # Criação da tabela de leads e índices SQLite
+│   │   │   └── validadores.py    # Funcoes de sanitizacao e validacao
+│   │   └── app.py                # FastAPI app, CORS, estaticos e fallback SPA
+│   ├── .env                      # Variaveis de ambiente (PORT=3000, ORIGEM_PERMITIDA=*)
+│   ├── iniciar_banco.py          # Criacao das tabelas leads + quiz e seed de dados
 │   ├── main.py                   # Ponto de entrada do servidor Uvicorn (Porta 3000)
 │   ├── package.json              # Atalho para scripts de desenvolvimento
-│   └── requirements.txt          # Dependências do Python (FastAPI, Uvicorn, etc.)
+│   └── requirements.txt          # Dependencias do Python (FastAPI, Uvicorn, etc.)
 │
 ├── frontend/                     # Frontend Reativo em React 18 + Vite
 │   ├── src/
 │   │   ├── components/           # Componentes React Modulares
 │   │   │   ├── Header.jsx        # Navbar fixa com marca AcademiStack e status
-│   │   │   ├── Hero.jsx          # Banner principal com visualizador de código
-│   │   │   ├── Beneficios.jsx    # Cards da arquitetura (Python, React, SQLite, Segurança)
-│   │   │   ├── FormularioLead.jsx# Formulário reativo com máscara e validação
+│   │   │   ├── Hero.jsx          # Banner principal com visualizador de codigo
+│   │   │   ├── Onboarding.jsx    # Tela inicial do quiz de estilo
+│   │   │   ├── Quiz.jsx          # Quiz interativo com barra de progresso
+│   │   │   ├── ResultadoQuiz.jsx # Pagina de resultados do quiz
+│   │   │   ├── Beneficios.jsx    # Cards da arquitetura (Python, React, SQLite, Seguranca)
+│   │   │   ├── FormularioLead.jsx# Formulario reativo com mascara e validacao
 │   │   │   ├── ModalLeads.jsx    # Modal de consulta em tempo real aos leads do SQLite
-│   │   │   ├── Toast.jsx         # Componente de notificação flutuante
-│   │   │   └── Footer.jsx        # Rodapé acadêmico com atalhos de sistema
-│   │   ├── App.jsx               # Componente raiz da aplicação
+│   │   │   ├── Toast.jsx         # Componente de notificacao flutuante
+│   │   │   └── Footer.jsx        # Rodape academico com atalhos de sistema
+│   │   ├── App.jsx               # Componente raiz da aplicacao (rotas de telas)
 │   │   ├── main.jsx              # Ponto de entrada do React (ReactDOM)
-│   │   └── index.css             # Estilos globais, fontes e animações glassmorphic
+│   │   └── index.css             # Estilos globais, fontes e animacoes glassmorphic
 │   ├── index.html                # Ponto de montagem HTML com Google Fonts
-│   ├── vite.config.js            # Configuração do Vite e proxy da API (/api -> 3000)
-│   ├── tailwind.config.js        # Configuração do Tailwind CSS
-│   ├── postcss.config.js         # Configuração PostCSS
-│   └── package.json              # Dependências do React e scripts Vite
+│   ├── vite.config.js            # Configuracao do Vite e proxy da API (/api -> 3000)
+│   ├── tailwind.config.js        # Configuracao do Tailwind CSS
+│   ├── postcss.config.js         # Configuracao PostCSS
+│   └── package.json              # Dependencias do React e scripts Vite
 │
-├── doc/                          # Documentação técnica do projeto
-│   ├── plano_landingpage_python.md   # Especificação técnica oficial da arquitetura Python
-│   └── plano_landingpage_nodejs.md   # Documentação de referência da versão legada em Node.js
+├── doc/                          # Documentacao tecnica do projeto
+│   ├── planoprojeto.md           # Plano de desenvolvimento do Recomendador de Estilo
+│   ├── escopo_do_projeto.md      # Escopo detalhado do quiz e funcionalidades
+│   ├── plano_landingpage_python.md   # Especificacao tecnica oficial da arquitetura Python
+│   └── plano_landingpage_nodejs.md   # Documentacao de referencia da versao legada em Node.js
 │
 ├── .gitignore                    # Arquivos ignorados pelo Git (.venv, node_modules, dist, db)
-└── README.md                     # Documentação oficial do projeto
+└── README.md                     # Documentacao oficial do projeto
 ```
 
 ---
 
-## ⚡ Guia Rápido: Como Executar o Servidor React e o Backend Python
+## Guia Rapido: Como Executar o Servidor React e o Backend Python
 
-### **1. Instalar as Dependências (Primeira Execução)**
+### **1. Instalar as Dependencias (Primeira Execucao)**
 
 Abra o terminal na raiz do projeto e execute:
 
@@ -115,9 +127,9 @@ npm install
 
 ---
 
-### 🚀 **2. Executar o Projeto em Modo de Desenvolvimento (Recomendado)**
+### **2. Executar o Projeto em Modo de Desenvolvimento (Recomendado)**
 
-No modo de desenvolvimento, o servidor React roda via Vite na porta **5173** com atualização instantânea no navegador (Hot Reload) e redirecionamento de requisições de API para a porta **3000**.
+No modo de desenvolvimento, o servidor React roda via Vite na porta **5173** com atualizacao instantanea no navegador (Hot Reload) e redirecionamento de requisicoes de API para a porta **3000**.
 
 #### **Passo 1: Iniciar o Servidor Backend (Python + FastAPI)**
 No primeiro terminal:
@@ -128,32 +140,32 @@ cd api
 # Linux/Mac:
 # .venv/bin/python main.py
 ```
-> O servidor iniciará na porta **3000** (`http://localhost:3000`).
+> O servidor iniciara na porta **3000** (`http://localhost:3000`).
 
 #### **Passo 2: Iniciar o Servidor Frontend (React)**
-Abra um **segundo terminal** no VS Code ou terminal de sua preferência:
+Abra um **segundo terminal** no VS Code ou terminal de sua preferencia:
 ```bash
 cd frontend
 npm run dev
 ```
-> O Vite iniciará o servidor React na porta **5173** (`http://localhost:5173`).
+> O Vite iniciara o servidor React na porta **5173** (`http://localhost:5173`).
 
 #### **Passo 3: Acessar no Navegador**
-- 🌐 **Interface React (Modo Dev):** [http://localhost:5173](http://localhost:5173)
-- 🔌 **API Python (Health Check):** [http://localhost:3000/api/health](http://localhost:3000/api/health)
+- **Interface React (Modo Dev):** http://localhost:5173
+- **API Python (Health Check):** http://localhost:3000/api/health
 
 ---
 
-### 📦 **3. Executar o Projeto em Modo de Produção (Build Único)**
+### **3. Executar o Projeto em Modo de Producao (Build Unico)**
 
-Caso prefira compilar a aplicação React e servir tudo através do servidor Python/FastAPI na porta **3000**:
+Caso prefira compilar a aplicacao React e servir tudo atraves do servidor Python/FastAPI na porta **3000**:
 
-1. **Gerar a compilação de produção do React:**
+1. **Gerar a compilacao de producao do React:**
    ```bash
    cd frontend
    npm run build
    ```
-   *Isso criará a pasta otimizada `frontend/dist`.*
+   *Isso criara a pasta otimizada `frontend/dist`.*
 
 2. **Iniciar o servidor backend Python:**
    ```bash
@@ -162,40 +174,48 @@ Caso prefira compilar a aplicação React e servir tudo através do servidor Pyt
    ```
 
 3. **Acessar no navegador:**
-   - 🌐 **Aplicação Completa em Produção:** [http://localhost:3000](http://localhost:3000)
+   - **Aplicacao Completa em Producao:** http://localhost:3000
 
 ---
 
-## 🛑 Como Parar os Servidores e Liberar Portas
+## Endpoints da API RESTful
 
-Para encerrar os servidores no terminal:
-- Pressione **`Ctrl` + `C`** e confirme com **`S`** (no Windows) ou encerre a sessão do terminal.
-
-Caso ocorra erro de porta ocupada (3000 / 5173):
-- **Windows (PowerShell):**
-  ```powershell
-  npx kill-port 3000
-  npx kill-port 5173
-  ```
-- **Linux / Mac (Terminal):**
-  ```bash
-  npx kill-port 3000 5173
-  ```
-
----
-
-## 🗄️ Endpoints da API RESTful
-
-| Método | Rota | Descrição |
+### **Leads**
+| Metodo | Rota | Descricao |
 |---|---|---|
-| `GET` | `/` | Servidor estático da aplicação React (`frontend/dist`) |
-| `GET` | `/api/health` | Health Check do servidor Python (`{"sucesso": true, "mensagem": "API funcionando!"}`) |
+| `GET` | `/` | Servidor estatico da aplicacao React (`frontend/dist`) |
+| `GET` | `/api/health` | Health Check do servidor Python |
 | `POST` | `/api/leads` | Cadastrar novo lead no banco SQLite |
 | `GET` | `/api/leads` | Listar leads cadastrados no SQLite (`pagina`, `limite`) |
 
+### **Quiz de Estilo**
+| Metodo | Rota | Descricao |
+|---|---|---|
+| `POST` | `/api/quiz/sessao` | Criar uma nova sessao do quiz (retorna `sessao_id` UUID) |
+| `GET` | `/api/quiz/perguntas` | Listar todas as perguntas do quiz com suas opcoes |
+| `GET` | `/api/quiz/estilos` | Listar todos os estilos disponiveis (nome, descricao, dicas, icone) |
+| `POST` | `/api/quiz/resposta` | Salvar uma resposta do usuario (`sessao_id`, `pergunta_id`, `opcao_id`) |
+| `GET` | `/api/quiz/resultado` | Calcular e retornar o resultado do quiz (`?sessao_id=...`) |
+
 ---
 
-## 📜 Licença e Créditos
+## Arquétipos de Estilo
 
-Projeto desenvolvido com fins acadêmicos e educacionais. Repositório oficial no GitHub:
-🔗 [https://github.com/carlosdavidr-eng/testepython.git](https://github.com/carlosdavidr-eng/testepython.git)
+| Estilo | Icone | Descricao |
+|---|---|---|
+| **Minimalista** | ◻ | Pecas com corte limpo, cores neutras e tecidos de alta qualidade |
+| **Streetwear** | 🛹 | Cultura urbana, graficos ousados, tenis como destaque |
+| **Classico** | 🎩 | Cortes tradicionais, tecidos nobres, elegancia atemporal |
+| **Boho** | 🌿 | Estampas etnicas, tecidos naturais, acessorios artesanais |
+| **Casual Chic** | ✨ | Conforto com estilo, mix de pecas casuais e refinadas |
+
+---
+
+## Licenca e Creditos
+
+Projeto desenvolvido com fins academicos e educacionais.
+
+**Desenvolvedoras:** Laiara Emanuelly Marinho Barbosa & Yasmim Ribeiro dos Santos
+
+Repositorio oficial no GitHub:
+[https://github.com/ImagineLikeMe/siteoutfit.git](https://github.com/ImagineLikeMe/siteoutfit.git)
