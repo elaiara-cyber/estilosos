@@ -2,7 +2,6 @@ import os
 import sys
 from pathlib import Path
 
-# Adiciona o diretório da API ao path do Python
 caminho_api = Path(__file__).resolve().parent
 sys.path.insert(0, str(caminho_api))
 
@@ -12,7 +11,6 @@ load_dotenv(dotenv_path=caminho_api / '.env')
 from iniciar_banco import inicializar_banco
 
 if __name__ == "__main__":
-    # Garante a inicialização da tabela SQLite
     inicializar_banco()
 
     import uvicorn

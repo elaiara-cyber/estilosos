@@ -1,4 +1,4 @@
-from fastapi import Response, status
+from fastapi import status
 from fastapi.responses import JSONResponse
 from ..config.conexao_banco import obter_conexao
 from ..utilitarios.validadores import validar_lead

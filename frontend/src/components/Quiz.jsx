@@ -26,7 +26,7 @@ export default function Quiz({ aoFinalizar }) {
           setSessaoId(dadosSessao.sessao_id)
         }
       } catch (err) {
-        setErro('Erro ao carregar o quiz. Verifique se a API esta rodando.')
+        setErro('Erro ao carregar o quiz. Verifique se a API está rodando.')
       } finally {
         setCarregando(false)
       }
@@ -71,10 +71,10 @@ export default function Quiz({ aoFinalizar }) {
 
   if (carregando) {
     return (
-      <section className="min-h-[80vh] flex items-center justify-center bg-slate-950">
+      <section className="min-h-[80vh] flex items-center justify-center">
         <div className="text-center space-y-4">
-          <div className="w-10 h-10 border-4 border-purple-400 border-t-transparent rounded-full animate-spin mx-auto"></div>
-          <p className="text-slate-400 text-sm">Carregando perguntas...</p>
+          <div className="w-10 h-10 border-4 border-rosaCha border-t-transparent rounded-full animate-spin mx-auto"></div>
+          <p className="text-slate-600 text-sm">Carregando perguntas...</p>
         </div>
       </section>
     )
@@ -82,10 +82,10 @@ export default function Quiz({ aoFinalizar }) {
 
   if (erro && perguntas.length === 0) {
     return (
-      <section className="min-h-[80vh] flex items-center justify-center bg-slate-950 px-4">
+      <section className="min-h-[80vh] flex items-center justify-center px-4">
         <div className="text-center space-y-4">
           <p className="text-red-400 text-sm">{erro}</p>
-          <button onClick={() => window.location.reload()} className="px-4 py-2 rounded-xl bg-slate-900 border border-slate-700 text-slate-300 text-sm font-semibold hover:bg-slate-800 transition">
+          <button onClick={() => window.location.reload()} className="px-4 py-2 rounded-xl bg-white border border-slate-300 text-slate-700 text-sm font-semibold hover:bg-gray-100 transition">
             Tentar novamente
           </button>
         </div>
@@ -97,22 +97,22 @@ export default function Quiz({ aoFinalizar }) {
   const progresso = ((indiceAtual + 1) / perguntas.length) * 100
 
   return (
-    <section className="min-h-[80vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-slate-950 relative overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-gradient-to-r from-purple-600/10 via-pink-600/10 to-cyan-600/10 rounded-full blur-[100px] pointer-events-none"></div>
+    <section className="min-h-[80vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-gradient-to-r from-rosaCha/20 via-pink-300/10 to-rosaBebe/20 rounded-full blur-[100px] pointer-events-none"></div>
 
       <div className="max-w-2xl w-full relative z-10 space-y-8">
         <div className="text-center space-y-2">
-          <span className="text-xs font-bold text-purple-400">Pergunta {indiceAtual + 1} de {perguntas.length}</span>
-          <div className="w-full bg-slate-900 rounded-full h-2.5 overflow-hidden">
+          <span className="text-xs font-bold text-rosaCha">Pergunta {indiceAtual + 1} de {perguntas.length}</span>
+          <div className="w-full bg-white rounded-full h-2.5 overflow-hidden">
             <div
-              className="h-full bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-500 rounded-full transition-all duration-500 ease-out"
+              className="h-full bg-gradient-to-r from-rosaCha to-rosaBebe rounded-full transition-all duration-500 ease-out"
               style={{ width: `${progresso}%` }}
             ></div>
           </div>
         </div>
 
-        <div className="bg-slate-900/80 backdrop-blur-2xl p-8 sm:p-10 rounded-3xl border border-slate-800 shadow-2xl space-y-6">
-          <h2 className="text-xl sm:text-2xl font-bold text-white text-center leading-relaxed">
+        <div className="bg-white backdrop-blur-2xl p-8 sm:p-10 rounded-3xl border border-white/30 shadow-2xl space-y-6">
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-800 text-center leading-relaxed">
             {pergunta.texto}
           </h2>
 
@@ -122,9 +122,9 @@ export default function Quiz({ aoFinalizar }) {
                 key={opcao.id}
                 onClick={() => selecionarOpcao(pergunta.id, opcao.id)}
                 disabled={enviando}
-                className="w-full text-left px-5 py-4 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 font-medium text-sm hover:border-purple-500/50 hover:bg-slate-800 transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-3 group"
+                className="w-full text-left px-5 py-4 rounded-xl bg-white border border-white/40 text-gray-800 font-medium text-sm hover:border-rosaCha/50 hover:bg-white transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-3 group"
               >
-                <span className="w-8 h-8 rounded-lg bg-slate-900 border border-slate-700 flex items-center justify-center text-xs font-bold text-slate-400 group-hover:border-purple-500/50 group-hover:text-purple-400 transition shrink-0">
+                <span className="w-8 h-8 rounded-lg bg-white border border-white/40 flex items-center justify-center text-xs font-bold text-rosaCha group-hover:border-rosaCha/50 group-hover:text-rosaCha transition shrink-0">
                   {pergunta.opcoes.indexOf(opcao) + 1}
                 </span>
                 <span>{opcao.texto}</span>
@@ -137,8 +137,8 @@ export default function Quiz({ aoFinalizar }) {
           )}
 
           {enviando && (
-            <div className="flex items-center justify-center gap-2 text-xs text-slate-400">
-              <div className="w-4 h-4 border-2 border-purple-400 border-t-transparent rounded-full animate-spin"></div>
+            <div className="flex items-center justify-center gap-2 text-xs text-gray-600">
+              <div className="w-4 h-4 border-2 border-rosaCha border-t-transparent rounded-full animate-spin"></div>
               Salvando resposta...
             </div>
           )}

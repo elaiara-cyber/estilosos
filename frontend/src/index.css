@@ -4,6 +4,7 @@
 
 @layer base {
   body {
+    @apply bg-gradient-to-b from-rosaCha to-rosaBebe;
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   }
   code, pre {
@@ -27,15 +28,15 @@
 }
 
 .glow-python {
-  box-shadow: 0 0 40px -10px rgba(55, 118, 171, 0.4);
+  box-shadow: 0 0 40px -10px rgba(255, 182, 193, 0.5);
 }
 
 .glow-react {
-  box-shadow: 0 0 40px -10px rgba(97, 218, 251, 0.4);
+  box-shadow: 0 0 40px -10px rgba(255, 192, 203, 0.5);
 }
 
 .glow-purple {
-  box-shadow: 0 0 40px -10px rgba(168, 85, 247, 0.4);
+  box-shadow: 0 0 40px -10px rgba(255, 182, 193, 0.5);
 }
 
 @keyframes float {

@@ -1,6 +1,6 @@
 import json
 import uuid
-from fastapi import Response, status
+from fastapi import status
 from fastapi.responses import JSONResponse
 from ..config.conexao_banco import obter_conexao
 
@@ -49,7 +49,7 @@ def calcular_resultado_controlador(sessao_id: str):
             status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
             content={
                 'sucesso': False,
-                'mensagem': 'Sessao invalida.'
+                'mensagem': 'Sessão inválida.'
             }
         )
 
@@ -71,7 +71,7 @@ def calcular_resultado_controlador(sessao_id: str):
                 status_code=status.HTTP_404_NOT_FOUND,
                 content={
                     'sucesso': False,
-                    'mensagem': 'Nenhuma resposta encontrada para esta sessao.'
+                    'mensagem': 'Nenhuma resposta encontrada para esta sessão.'
                 }
             )
 
@@ -129,18 +129,18 @@ def salvar_resposta_controlador(payload: dict):
 
     erros = []
     if not sessao_id or len(sessao_id) < 5:
-        erros.append(' sessao_id invalido (minimo 5 caracteres).')
+        erros.append(' sessão_id inválido (mínimo 5 caracteres).')
     if not pergunta_id or not isinstance(pergunta_id, int) or pergunta_id < 1:
-        erros.append(' pergunta_id invalido.')
+        erros.append(' pergunta_id inválido.')
     if not opcao_id or not isinstance(opcao_id, int) or opcao_id < 1:
-        erros.append(' opcao_id invalido.')
+        erros.append(' opção_id inválido.')
 
     if erros:
         return JSONResponse(
             status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
             content={
                 'sucesso': False,
-                'mensagem': 'Dados invalidos.',
+                'mensagem': 'Dados inválidos.',
                 'erros': erros
             }
         )
@@ -150,18 +150,16 @@ def salvar_resposta_controlador(payload: dict):
         cursor = conexao.cursor()
         cursor.execute('SELECT id FROM quiz_perguntas WHERE id = ?', (pergunta_id,))
         if not cursor.fetchone():
-            erros.append('Pergunta nao encontrada.')
             return JSONResponse(
                 status_code=status.HTTP_404_NOT_FOUND,
-                content={'sucesso': False, 'mensagem': 'Pergunta nao encontrada.'}
+                content={'sucesso': False, 'mensagem': 'Pergunta não encontrada.'}
             )
 
         cursor.execute('SELECT id FROM quiz_opcoes WHERE id = ? AND pergunta_id = ?', (opcao_id, pergunta_id))
         if not cursor.fetchone():
-            erros.append('Opcao invalida para esta pergunta.')
             return JSONResponse(
                 status_code=status.HTTP_404_NOT_FOUND,
-                content={'sucesso': False, 'mensagem': 'Opcao invalida para esta pergunta.'}
+                content={'sucesso': False, 'mensagem': 'Opção inválida para esta pergunta.'}
             )
 
         cursor.execute(
@@ -192,5 +190,5 @@ def criar_sessao_controlador():
     return {
         'sucesso': True,
         'sessao_id': sessao_id,
-        'mensagem': 'Sessao do quiz criada.'
+        'mensagem': 'Sessão do quiz criada.'
     }
