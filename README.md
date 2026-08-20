@@ -1,40 +1,75 @@
-# Sistema Academico de Captura de Leads e Recomendador de Estilo — React 18 + Python (FastAPI) + SQLite
+# Estilosos — Sistema de Recomendação de Estilo Vestuário
 
-> **Projeto Academico Full Stack:** Aplicacao moderna baseada em componentes reativos em **React 18 (Vite + Tailwind CSS)** com estetica **Dark Glassmorphic** e API RESTful robusta de alta performance em **Python 3 (FastAPI + Uvicorn)** com banco de dados **SQLite**.
+## Dados do Projeto
+
+**Nome do Projeto:** Estilosos
+
+**Apresentação:**  
+O presente documento descreve as informações fundamentais referentes ao projeto de desenvolvimento de software denominado "Estilosos". O projeto visa abordar a problemática relativa à seleção de vestuário adequado a ocasiões específicas, oferecendo uma solução tecnológica orientada às necessidades dos usuários.
+
+**Objetivo do Projeto:**  
+Orientar pessoas em relação ao estilo de roupa que mais combina com elas.
+
+**Equipe de Desenvolvimento:**
+- Laiara Emanuelly Marinho Barbosa
+- Yasmim Ribeiro dos Santos
+
+**Institucional:**
+- Instituto: Instituto Federal de Mato Grosso - Campus de Barra do Garças - MT
+- Ano Acadêmico: 2026
+- Curso: Técnico em Informática
+- Série: Terceiro Ano - B
+
+**Orientação Acadêmica:**
+- Prof. Carlos David Rocha de Souza
+
+**Contextualização Disciplinar:**
+- Disciplina: Desenvolvimento para Web
 
 ---
 
-## Sobre o Projeto
+## Sobre o Sistema
 
-Este projeto consiste em um **Sistema Academico de Captura e Gestao de Leads** e um **Recomendador de Estilo Pessoal** desenvolvidos para demonstrar a integracao de ponta a ponta entre uma interface web reativa em **React 18** e um servidor de API em **Python (FastAPI)** com persistencia relacional no **SQLite**.
+O **Estilosos** é um sistema full-stack acadêmico desenvolvido para demonstrar a integração entre uma interface web reativa em React 18 e um servidor de API em Python (FastAPI) com persistência no SQLite. O sistemafunciona como um recomendador de estilo pessoal, auxiliando usuários na seleção de roupas adequadas a ocasiões específicas por meio de um quiz interativo e análise de arquétipos de moda.
 
-A aplicacao conta com:
-- Interface futurista baseada em **Dark Glassmorphism**, tipografia com **Google Fonts**, validacao e sanitizacao estrita de dados no servidor contra ataques XSS.
-- **Modal interativo em tempo real** para consultar os leads gravados diretamente no SQLite via API.
-- **Quiz interativo de estilo** com 6 perguntas, 5 arquétipos de moda (Minimalista, Streetwear, Classico, Boho, Casual Chic), barra de progresso e pagina de resultados com dicas praticas.
+A aplicação compreende dois módulos principais:
+1. **Módulo de Captura de Leads:** Sistema para registro e consulta de leads (potenciais interessados) em banco de dados relacional.
+2. **Módulo de Recomendador de Estilo:** Quiz interativo com 6 perguntas que identifica o arquétipo de moda do usuário (Minimalista, Streetwear, Classico, Boho, Casual Chic) e fornece dicas personalizadas.
 
 ---
 
-## Destaques da Interface & Experiencia do Usuario
+## Destaques das Funcionalidades
 
-- **Estetica Dark Glassmorphism:** Cores futuristas (tons de slate, ciano React, roxo e azul Python), transparencias com `backdrop-blur` e efeitos neon (*glow*).
-- **Tipografia Importada (Google Fonts):** Utilizacao das fontes *Plus Jakarta Sans* para a interface e *Fira Code* para amostras de codigo.
-- **Visualizador Interativo de Codigo:** Abas interativas no banner principal alternando entre trechos de codigo do backend em **Python (FastAPI)** e do frontend em **React (Hooks)**.
-- **Inspector de Banco de Dados ao Vivo (`ModalLeads.jsx`):** Modal flutuante que permite aos usuarios e avaliadores consultar e atualizar em tempo real a lista de leads cadastrados no SQLite via rota `GET /api/leads`.
-- **Quiz de Estilo Interativo (`Quiz.jsx`):** Navegacao fluida entre 6 perguntas com barra de progresso animada, selecao visual de opcoes e integracao assincrona com a API Python.
-- **Pagina de Resultados (`ResultadoQuiz.jsx`):** Exibicao do arquétipo de estilo vencedor, estilos secundarios compativeis, barra de pontuacao completa e dicas praticas de moda.
+- **Interface Dark Glassmorphism:** Estetica futurista com cores slate, ciano, roxo e azul, transparencias `backdrop-blur` e efeitos neon glow.
+- **Quiz Interativo de Estilo:** 6 perguntas com 5 arquétipos de moda (Minimalista, Streetwear, Classico, Boho, Casual Chic), barra de progresso animada e navegacao fluida entre questões.
+- **Pagina de Resultados Detalhada:** Exibicao do arquétipo vitorioso, estilos secundarios compativeis, barra de pontuacao completa e dicas praticas de moda.
+- **Modal de Consultas em Tempo Real (`ModalLeads.jsx`):** Permite aos usuarios e avaliadores consultar e atualizar a lista de leads cadastrados no SQLite via API rota `GET /api/leads` sem recarregar a pagina.
+- **Validacao e Seguranca de Dados:** Sanitizacao rigorosa contra ataques XSS usando `html.escape` no backend Python (FastAPI) com validadores de email e telefone.
+- **Arquitetura Full-Stack Integrada:** Comunicacao assincrona via fetch entre frontend React 18 e backend Python FastAPI com roteamento CORS configurado.
+
+---
+
+## Arquetipos de Estilo
+
+| Estilo | Icone | Descricao |
+|---|---|---|
+| **Minimalista** | ◻ | Pecas com corte limpo, cores neutras e tecidos de alta qualidade |
+| **Streetwear** | 🛹 | Cultura urbana, graficos ousados, tenis como destaque |
+| **Classico** | 🎩 | Cortes tradicionais, tecidos nobres, elegancia atemporal |
+| **Boho** | 🌿 | Estampas etnicas, tecidos naturais, acessorios artesanais |
+| **Casual Chic** | ✨ | Conforto com estilo, mix de pecas casuais e refinadas |
 
 ---
 
 ## Tecnologias Utilizadas
 
-### **Frontend (React 18 + Vite + Tailwind CSS)**
+### Frontend (React 18 + Vite + Tailwind CSS)
 - **React 18** — Biblioteca declarativa e baseada em componentes reativos para criacao de interfaces modernas.
 - **Vite** — Ferramenta de build de ultima geracao com Hot Module Replacement (HMR) instantaneo.
 - **Tailwind CSS v3** — Framework CSS utilitario para estilizacao rapida, responsiva e elegante.
-- **JSX & React Hooks** — Gerenciamento de estado de formulario (`useState`, `useEffect`), mascaras dinamicas e integracao assincrona com a API via `fetch`.
+- **JSX & React Hooks** — Gerenciamento de estado de formularios (`useState`, `useEffect`), mascaras dinamicas e integracao assincrona com a API via `fetch`.
 
-### **Backend (Python 3 + FastAPI + SQLite)**
+### Backend (Python 3 + FastAPI + SQLite)
 - **Python 3.13** — Linguagem principal de desenvolvimento do backend.
 - **FastAPI** — Framework web moderno e de altissima performance para construcao de APIs RESTful.
 - **Uvicorn** — Servidor ASGI ultrarrapido para execucao da aplicacao FastAPI.
@@ -48,7 +83,7 @@ A aplicacao conta com:
 
 ```text
 outfitsite/
-├── api/                          # Backend API RESTful em Python
+├ api/                          # Backend API RESTful em Python
 │   ├── db/                       # Banco de dados SQLite (criado em runtime)
 │   │   └── landing.db            # Arquivo da base de dados local
 │   ├── src/
@@ -69,7 +104,7 @@ outfitsite/
 │   ├── package.json              # Atalho para scripts de desenvolvimento
 │   └── requirements.txt          # Dependencias do Python (FastAPI, Uvicorn, etc.)
 │
-├── frontend/                     # Frontend Reativo em React 18 + Vite
+├ frontend/                     # Frontend Reativo em React 18 + Vite
 │   ├── src/
 │   │   ├── components/           # Componentes React Modulares
 │   │   │   ├── Header.jsx        # Navbar fixa com marca AcademiStack e status
@@ -91,23 +126,21 @@ outfitsite/
 │   ├── postcss.config.js         # Configuracao PostCSS
 │   └── package.json              # Dependencias do React e scripts Vite
 │
-├── doc/                          # Documentacao tecnica do projeto
+├ doc/                          # Documentacao tecnica do projeto
 │   ├── planoprojeto.md           # Plano de desenvolvimento do Recomendador de Estilo
 │   ├── escopo_do_projeto.md      # Escopo detalhado do quiz e funcionalidades
 │   ├── plano_landingpage_python.md   # Especificacao tecnica oficial da arquitetura Python
 │   └── plano_landingpage_nodejs.md   # Documentacao de referencia da versao legada em Node.js
 │
-├── .gitignore                    # Arquivos ignorados pelo Git (.venv, node_modules, dist, db)
-└── README.md                     # Documentacao oficial do projeto
+├ .gitignore                    # Arquivos ignorados pelo Git (.venv, node_modules, dist, db)
+└ README.md                     # Documentacao oficial do projeto
 ```
 
 ---
 
-## Guia Rapido: Como Executar o Servidor React e o Backend Python
+## Guia Rapido: Como Executar o Servidor
 
-### **1. Instalar as Dependencias (Primeira Execucao)**
-
-Abra o terminal na raiz do projeto e execute:
+### 1. Instalar as Dependencias (Primeira Execucao)
 
 **Backend (API Python):**
 ```bash
@@ -127,11 +160,11 @@ npm install
 
 ---
 
-### **2. Executar o Projeto em Modo de Desenvolvimento (Recomendado)**
+### 2. Executar o Projeto em Modo de Desenvolvimento (Recomendado)
 
 No modo de desenvolvimento, o servidor React roda via Vite na porta **5173** com atualizacao instantanea no navegador (Hot Reload) e redirecionamento de requisicoes de API para a porta **3000**.
 
-#### **Passo 1: Iniciar o Servidor Backend (Python + FastAPI)**
+#### Passo 1: Iniciar o Servidor Backend (Python + FastAPI)
 No primeiro terminal:
 ```bash
 cd api
@@ -142,7 +175,7 @@ cd api
 ```
 > O servidor iniciara na porta **3000** (`http://localhost:3000`).
 
-#### **Passo 2: Iniciar o Servidor Frontend (React)**
+#### Passo 2: Iniciar o Servidor Frontend (React)
 Abra um **segundo terminal** no VS Code ou terminal de sua preferencia:
 ```bash
 cd frontend
@@ -150,13 +183,13 @@ npm run dev
 ```
 > O Vite iniciara o servidor React na porta **5173** (`http://localhost:5173`).
 
-#### **Passo 3: Acessar no Navegador**
+#### Passo 3: Acessar no Navegador
 - **Interface React (Modo Dev):** http://localhost:5173
 - **API Python (Health Check):** http://localhost:3000/api/health
 
 ---
 
-### **3. Executar o Projeto em Modo de Producao (Build Unico)**
+### 3. Executar o Projeto em Modo de Producao (Build Unico)
 
 Caso prefira compilar a aplicacao React e servir tudo atraves do servidor Python/FastAPI na porta **3000**:
 
@@ -180,7 +213,7 @@ Caso prefira compilar a aplicacao React e servir tudo atraves do servidor Python
 
 ## Endpoints da API RESTful
 
-### **Leads**
+### Leads
 | Metodo | Rota | Descricao |
 |---|---|---|
 | `GET` | `/` | Servidor estatico da aplicacao React (`frontend/dist`) |
@@ -188,7 +221,7 @@ Caso prefira compilar a aplicacao React e servir tudo atraves do servidor Python
 | `POST` | `/api/leads` | Cadastrar novo lead no banco SQLite |
 | `GET` | `/api/leads` | Listar leads cadastrados no SQLite (`pagina`, `limite`) |
 
-### **Quiz de Estilo**
+### Quiz de Estilo
 | Metodo | Rota | Descricao |
 |---|---|---|
 | `POST` | `/api/quiz/sessao` | Criar uma nova sessao do quiz (retorna `sessao_id` UUID) |
@@ -196,18 +229,6 @@ Caso prefira compilar a aplicacao React e servir tudo atraves do servidor Python
 | `GET` | `/api/quiz/estilos` | Listar todos os estilos disponiveis (nome, descricao, dicas, icone) |
 | `POST` | `/api/quiz/resposta` | Salvar uma resposta do usuario (`sessao_id`, `pergunta_id`, `opcao_id`) |
 | `GET` | `/api/quiz/resultado` | Calcular e retornar o resultado do quiz (`?sessao_id=...`) |
-
----
-
-## Arquétipos de Estilo
-
-| Estilo | Icone | Descricao |
-|---|---|---|
-| **Minimalista** | ◻ | Pecas com corte limpo, cores neutras e tecidos de alta qualidade |
-| **Streetwear** | 🛹 | Cultura urbana, graficos ousados, tenis como destaque |
-| **Classico** | 🎩 | Cortes tradicionais, tecidos nobres, elegancia atemporal |
-| **Boho** | 🌿 | Estampas etnicas, tecidos naturais, acessorios artesanais |
-| **Casual Chic** | ✨ | Conforto com estilo, mix de pecas casuais e refinadas |
 
 ---
 
@@ -219,3 +240,5 @@ Projeto desenvolvido com fins academicos e educacionais.
 
 Repositorio oficial no GitHub:
 [https://github.com/ImagineLikeMe/siteoutfit.git](https://github.com/ImagineLikeMe/siteoutfit.git)
+
+---
