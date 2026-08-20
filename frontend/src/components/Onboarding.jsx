@@ -40,7 +40,7 @@ export default function Onboarding({ aoIniciar }) {
 
         <button
           onClick={aoIniciar}
-          className="px-10 py-5 rounded-2xl bg-gradient-to-r from-rosaCha via-pink-400 to-rosaBebe hover:from-rosaCha hover:to-pink-400 text-white font-extrabold text-lg transition duration-300 shadow-xl shadow-rosaCha/25 hover:shadow-rosaCha/40 flex items-center gap-3 mx-auto group"
+          className="px-10 py-5 rounded-2xl bg-gradient-to-r from-rosaCha via-pink-400 to-rosaBebe hover:from-rosaCha hover:to-pink-400 text-white font-extrabold text-lg transition duration-300 shadow-xl flex items-center gap-3 mx-auto group"
         >
           <span>Iniciar Quiz de Estilo</span>
           <span className="group-hover:translate-x-1 transition-transform text-xl">➔</span>

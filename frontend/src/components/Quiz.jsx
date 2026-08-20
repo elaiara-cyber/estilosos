@@ -122,9 +122,9 @@ export default function Quiz({ aoFinalizar }) {
                 key={opcao.id}
                 onClick={() => selecionarOpcao(pergunta.id, opcao.id)}
                 disabled={enviando}
-                className="w-full text-left px-5 py-4 rounded-xl bg-white border border-white/40 text-gray-800 font-medium text-sm hover:border-rosaCha/50 hover:bg-white transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-3 group"
+                className="w-full text-left px-5 py-4 rounded-xl bg-white border text-gray-800 font-medium text-sm hover:border-rosaCha hover:bg-gray-50 transition duration-200 cursor-not-allowed flex items-center gap-3 group"
               >
-                <span className="w-8 h-8 rounded-lg bg-white border border-white/40 flex items-center justify-center text-xs font-bold text-rosaCha group-hover:border-rosaCha/50 group-hover:text-rosaCha transition shrink-0">
+                <span className="w-8 h-8 rounded-lg bg-white border flex items-center justify-center text-xs font-bold text-rosaCha group-hover:border-rosaCha group-hover:text-rosaCha transition shrink-0">
                   {pergunta.opcoes.indexOf(opcao) + 1}
                 </span>
                 <span>{opcao.texto}</span>

@@ -5,7 +5,7 @@
 **Nome do Projeto:** Estilosos
 
 **Apresentação:**  
-O presente documento descreve as informações fundamentais referentes ao projeto de desenvolvimento de software denominado "Estilosos". O projeto visa abordar a problemática relativa à seleção de vestuário adequado a ocasiões específicas, oferecendo uma solução tecnológica orientada às necessidades dos usuários.
+O presente documento descreve as informações fundamentais referentes ao projeto de desenvolvimento de software denominado "Estilosos". O projeto visa abordar a problemática relativa à seleção de vestuário adequado a cada indivíduo, oferecendo uma solução tecnológica orientada às necessidades dos usuários.
 
 **Objetivo do Projeto:**  
 Orientar pessoas em relação ao estilo de roupa que mais combina com elas.
@@ -30,52 +30,52 @@ Orientar pessoas em relação ao estilo de roupa que mais combina com elas.
 
 ## Sobre o Sistema
 
-O **Estilosos** é um sistema full-stack acadêmico desenvolvido para demonstrar a integração entre uma interface web reativa em React 18 e um servidor de API em Python (FastAPI) com persistência no SQLite. O sistemafunciona como um recomendador de estilo pessoal, auxiliando usuários na seleção de roupas adequadas a ocasiões específicas por meio de um quiz interativo e análise de arquétipos de moda.
+O **Estilosos** é um sistema full-stack acadêmico desenvolvido para demonstrar a integração entre uma interface web reativa em React 18 e um servidor de API em Python (FastAPI) com persistência no banco de dados SQLite. O sistema funciona como um recomendador de estilo pessoal, auxiliando usuários na seleção de roupas adequadas a ocasiões específicas por meio de quiz interativo e análise de arquétipos de moda.
 
 A aplicação compreende dois módulos principais:
-1. **Módulo de Captura de Leads:** Sistema para registro e consulta de leads (potenciais interessados) em banco de dados relacional.
-2. **Módulo de Recomendador de Estilo:** Quiz interativo com 6 perguntas que identifica o arquétipo de moda do usuário (Minimalista, Streetwear, Classico, Boho, Casual Chic) e fornece dicas personalizadas.
+1. **Módulo de Recomendação de Estilo:** Quiz interativo com 6 perguntas que identifica o arquétipo de moda do usuário (Minimalista, Streetwear, Classico, Boho, Casual Chic) e fornece dicas personalizadas, com armazenamento de resultados no banco de dados SQLite.
+2. **Módulo de Gestão de Leads:** Sistema para registro e consulta de leads (potenciais interessados) por meio de interface de formulário, com persistência no banco de dados SQLite e visualização em tempo real via modal.
 
 ---
 
 ## Destaques das Funcionalidades
 
-- **Interface Dark Glassmorphism:** Estetica futurista com cores slate, ciano, roxo e azul, transparencias `backdrop-blur` e efeitos neon glow.
-- **Quiz Interativo de Estilo:** 6 perguntas com 5 arquétipos de moda (Minimalista, Streetwear, Classico, Boho, Casual Chic), barra de progresso animada e navegacao fluida entre questões.
-- **Pagina de Resultados Detalhada:** Exibicao do arquétipo vitorioso, estilos secundarios compativeis, barra de pontuacao completa e dicas praticas de moda.
-- **Modal de Consultas em Tempo Real (`ModalLeads.jsx`):** Permite aos usuarios e avaliadores consultar e atualizar a lista de leads cadastrados no SQLite via API rota `GET /api/leads` sem recarregar a pagina.
-- **Validacao e Seguranca de Dados:** Sanitizacao rigorosa contra ataques XSS usando `html.escape` no backend Python (FastAPI) com validadores de email e telefone.
-- **Arquitetura Full-Stack Integrada:** Comunicacao assincrona via fetch entre frontend React 18 e backend Python FastAPI com roteamento CORS configurado.
+- **Interface Estética Rose Pink:** Estética moderna com paleta de cores rosa, oferecendo uma experiência visual contemporânea e acolhedora.
+- **Quiz Interativo de Estilo:** 6 perguntas com 5 arquétipos de moda (Minimalista, Streetwear, Classico, Boho, Casual Chic), barra de progresso animada e navegação fluida entre questões.
+- **Página de Resultados Detalhada:** Exibição do arquétipo vencedor, estilos secundários compatíveis, barra de pontuação completa e dicas práticas de moda.
+- **Modal de Consultas em Tempo Real (`ModalLeads.jsx`):** Permite aos usuários e avaliadores consultar e atualizar a lista de leads cadastrados no SQLite via API rota `GET /api/leads` sem recarregar a página.
+- **Validação e Segurança de Dados:** Sanitização rigorosa contra ataques XSS usando `html.escape` no backend Python (FastAPI) com validadores de e-mail e telefone.
+- **Arquitetura Full-Stack Integrada:** Comunicação assíncrona via fetch entre frontend React 18 e backend Python FastAPI com roteamento CORS configurado.
 
 ---
 
-## Arquetipos de Estilo
+## Arquétipos de Estilo
 
-| Estilo | Icone | Descricao |
+| Estilo | Ícone | Descrição |
 |---|---|---|
-| **Minimalista** | ◻ | Pecas com corte limpo, cores neutras e tecidos de alta qualidade |
-| **Streetwear** | 🛹 | Cultura urbana, graficos ousados, tenis como destaque |
-| **Classico** | 🎩 | Cortes tradicionais, tecidos nobres, elegancia atemporal |
-| **Boho** | 🌿 | Estampas etnicas, tecidos naturais, acessorios artesanais |
-| **Casual Chic** | ✨ | Conforto com estilo, mix de pecas casuais e refinadas |
+| **Minimalista** | ◻ | Peças com corte limpo, cores neutras e tecidos de alta qualidade |
+| **Streetwear** | 🛹 | Cultura urbana, gráficos ousados, tênis como destaque |
+| **Clássico** | 🎩 | Cortes tradicionais, tecidos nobres, elegância atemporal |
+| **Boho** | 🌿 | Estampas étnicas, tecidos naturais, acessórios artesanais |
+| **Casual Chic** | ✨ | Conforto com estilo, mix de peças casuais e refinadas |
 
 ---
 
 ## Tecnologias Utilizadas
 
 ### Frontend (React 18 + Vite + Tailwind CSS)
-- **React 18** — Biblioteca declarativa e baseada em componentes reativos para criacao de interfaces modernas.
-- **Vite** — Ferramenta de build de ultima geracao com Hot Module Replacement (HMR) instantaneo.
-- **Tailwind CSS v3** — Framework CSS utilitario para estilizacao rapida, responsiva e elegante.
-- **JSX & React Hooks** — Gerenciamento de estado de formularios (`useState`, `useEffect`), mascaras dinamicas e integracao assincrona com a API via `fetch`.
+- **React 18** — Biblioteca declarativa e baseada em componentes reativos para criação de interfaces modernas.
+- **Vite** — Ferramenta de build de última geração com Hot Module Replacement (HMR) instantâneo.
+- **Tailwind CSS v3** — Framework CSS utilitário para estilização rápida, responsiva e elegante.
+- **JSX & React Hooks** — Gerenciamento de estado de formulários (`useState`, `useEffect`), máscaras dinâmicas e integração assíncrona com a API via `fetch`.
 
 ### Backend (Python 3 + FastAPI + SQLite)
 - **Python 3.13** — Linguagem principal de desenvolvimento do backend.
-- **FastAPI** — Framework web moderno e de altissima performance para construcao de APIs RESTful.
-- **Uvicorn** — Servidor ASGI ultrarrapido para execucao da aplicacao FastAPI.
-- **Pydantic & Validadores** — Sanitizacao de dados contra ataques XSS (`html.escape`), tratamento de erros e validacao de emails/telefones.
+- **FastAPI** — Framework web moderno e de altíssima performance para construção de APIs RESTful.
+- **Uvicorn** — Servidor ASGI ultrarrápido para execução da aplicação FastAPI.
+- **Pydantic & Validadores** — Sanitização de dados contra ataques XSS (`html.escape`), tratamento de erros e validação de e-mails/telefones.
 - **SQLite (sqlite3)** — Banco de dados relacional leve e embutido com suporte a *Prepared Statements* e modo WAL (Write-Ahead Logging).
-- **CORS Middleware** — Permissao e controle de requisicoes Cross-Origin entre React e Python.
+- **CORS Middleware** — Permissão e controle de requisições Cross-Origin entre React e Python.
 
 ---
 
@@ -88,7 +88,7 @@ outfitsite/
 │   │   └── landing.db            # Arquivo da base de dados local
 │   ├── src/
 │   │   ├── config/
-│   │   │   └── conexao_banco.py  # Conexao SQLite (row_factory dict, WAL mode)
+│   │   │   └── conexao_banco.py  # Conexão SQLite (row_factory dict, WAL mode)
 │   │   ├── controladores/
 │   │   │   ├── lead_controlador.py  # Logica de negocio (cadastrar e listar leads)
 │   │   │   └── quiz_controlador.py  # Logica do quiz (perguntas, respostas, resultado)
@@ -96,13 +96,13 @@ outfitsite/
 │   │   │   ├── lead_rotas.py     # Endpoints HTTP de leads (/api/leads)
 │   │   │   └── quiz_rotas.py     # Endpoints HTTP do quiz (/api/quiz/*)
 │   │   ├── utilitarios/
-│   │   │   └── validadores.py    # Funcoes de sanitizacao e validacao
+│   │   │   └── validadores.py    # Funções de sanitização e validação
 │   │   └── app.py                # FastAPI app, CORS, estaticos e fallback SPA
 │   ├── .env                      # Variaveis de ambiente (PORT=3000, ORIGEM_PERMITIDA=*)
-│   ├── iniciar_banco.py          # Criacao das tabelas leads + quiz e seed de dados
+│   ├── iniciar_banco.py          # Criação das tabelas leads + quiz e seed de dados
 │   ├── main.py                   # Ponto de entrada do servidor Uvicorn (Porta 3000)
 │   ├── package.json              # Atalho para scripts de desenvolvimento
-│   └── requirements.txt          # Dependencias do Python (FastAPI, Uvicorn, etc.)
+│   └── requirements.txt          # Dependências do Python (FastAPI, Uvicorn, etc.)
 │
 ├ frontend/                     # Frontend Reativo em React 18 + Vite
 │   ├── src/
@@ -138,9 +138,9 @@ outfitsite/
 
 ---
 
-## Guia Rapido: Como Executar o Servidor
+## Guia Rápido: Como Executar o Servidor
 
-### 1. Instalar as Dependencias (Primeira Execucao)
+### 1. Instalar as Dependências (Primeira Execução)
 
 **Backend (API Python):**
 ```bash
@@ -162,7 +162,7 @@ npm install
 
 ### 2. Executar o Projeto em Modo de Desenvolvimento (Recomendado)
 
-No modo de desenvolvimento, o servidor React roda via Vite na porta **5173** com atualizacao instantanea no navegador (Hot Reload) e redirecionamento de requisicoes de API para a porta **3000**.
+No modo de desenvolvimento, o servidor React roda via Vite na porta **5173** com atualização instantânea no navegador (Hot Reload) e redirecionamento de requisições de API para a porta **3000**.
 
 #### Passo 1: Iniciar o Servidor Backend (Python + FastAPI)
 No primeiro terminal:
@@ -189,16 +189,16 @@ npm run dev
 
 ---
 
-### 3. Executar o Projeto em Modo de Producao (Build Unico)
+### 3. Executar o Projeto em Modo de Produção (Build Único)
 
-Caso prefira compilar a aplicacao React e servir tudo atraves do servidor Python/FastAPI na porta **3000**:
+Caso prefira compilar a aplicação React e servir tudo através do servidor Python/FastAPI na porta **3000**:
 
 1. **Gerar a compilacao de producao do React:**
    ```bash
    cd frontend
    npm run build
    ```
-   *Isso criara a pasta otimizada `frontend/dist`.*
+   *Isso criará a pasta otimizada `frontend/dist`.*
 
 2. **Iniciar o servidor backend Python:**
    ```bash
@@ -207,7 +207,7 @@ Caso prefira compilar a aplicacao React e servir tudo atraves do servidor Python
    ```
 
 3. **Acessar no navegador:**
-   - **Aplicacao Completa em Producao:** http://localhost:3000
+   - **Aplicação Completa em Produção:** http://localhost:3000
 
 ---
 
@@ -216,7 +216,7 @@ Caso prefira compilar a aplicacao React e servir tudo atraves do servidor Python
 ### Leads
 | Metodo | Rota | Descricao |
 |---|---|---|
-| `GET` | `/` | Servidor estatico da aplicacao React (`frontend/dist`) |
+| `GET` | `/` | Servidor estático da aplicação React (`frontend/dist`) |
 | `GET` | `/api/health` | Health Check do servidor Python |
 | `POST` | `/api/leads` | Cadastrar novo lead no banco SQLite |
 | `GET` | `/api/leads` | Listar leads cadastrados no SQLite (`pagina`, `limite`) |
@@ -232,9 +232,9 @@ Caso prefira compilar a aplicacao React e servir tudo atraves do servidor Python
 
 ---
 
-## Licenca e Creditos
+## Licença e Créditos
 
-Projeto desenvolvido com fins academicos e educacionais.
+Projeto desenvolvido com fins acadêmicos e educacionais.
 
 **Desenvolvedoras:** Laiara Emanuelly Marinho Barbosa & Yasmim Ribeiro dos Santos
 
