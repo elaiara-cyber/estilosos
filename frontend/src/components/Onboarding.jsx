@@ -14,18 +14,18 @@ export default function Onboarding({ aoIniciar }) {
         <div className="space-y-4">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-gray-800 tracking-tight leading-tight">
             Descubra seu{' '}
-            <span className="text-rosaCha">
+            <span className="text-pink-400 font-extrabold">
               Estilo
             </span>
           </h1>
           <p className="text-lg text-gray-700 max-w-xl mx-auto leading-relaxed">
-            Responda um quiz rápido de 6 perguntas e descubra qual arquetipo de estilo combina mais com você. Minimalista, Streetwear, Classico, Boho ou Casual Chic.
+            Responda um quiz rápido de 20 perguntas e descubra qual arquetipo de estilo combina mais com você. Minimalista, Streetwear, Classico, Boho ou Casual Chic.
           </p>
         </div>
 
         <div className="flex flex-wrap items-center justify-center gap-3 text-xs font-semibold text-gray-600">
           <span className="px-3 py-1.5 rounded-xl bg-white border border-white/30 text-rosaCha">
-            6 Perguntas
+            20 Perguntas
           </span>
           <span className="px-3 py-1.5 rounded-xl bg-white border border-white/30 text-pink-500">
             5 Estilos

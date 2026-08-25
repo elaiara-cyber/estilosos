@@ -2,7 +2,7 @@ import os
 from pathlib import Path
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from dotenv import load_dotenv
 
@@ -42,7 +42,10 @@ if pasta_estatica.exists():
 @app.get("/{full_path:path}")
 async def servir_frontend_ou_fallback(request: Request, full_path: str):
     if full_path.startswith("api"):
-        return FileResponse(status_code=404, path="")
+        return JSONResponse(
+            status_code=404,
+            content={'sucesso': False, 'mensagem': 'Rota de API não encontrada.'}
+        )
 
     caminho_arquivo = pasta_estatica / full_path
     if full_path and caminho_arquivo.is_file():
