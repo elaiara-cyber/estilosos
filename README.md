@@ -239,6 +239,6 @@ Projeto desenvolvido com fins acadêmicos e educacionais.
 **Desenvolvedoras:** Laiara Emanuelly Marinho Barbosa & Yasmim Ribeiro dos Santos
 
 Repositorio oficial no GitHub:
-[https://github.com/ImagineLikeMe/siteoutfit.git](https://github.com/ImagineLikeMe/siteoutfit.git)
+[https://github.com/elaiara-cyber/estilosos.git](https://github.com/elaiara-cyber/estilosos.git)
 
 ---
