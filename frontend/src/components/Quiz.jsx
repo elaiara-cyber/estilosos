@@ -105,7 +105,7 @@ export default function Quiz({ aoFinalizar }) {
           <span className="text-xs font-bold text-rosaCha">Pergunta {indiceAtual + 1} de {perguntas.length}</span>
           <div className="w-full bg-white rounded-full h-2.5 overflow-hidden">
             <div
-              className="h-full bg-gradient-to-r from-rosaCha via-pink-400 to-rosaBebe rounded-full transition-all duration-500 ease-out"
+className="h-full bg-gradient-to-r from-rosaCha via-pink-400 to-rosaBebe rounded-full transition-all duration-500 ease-out"
               style={{ width: `${progresso}%` }}
             ></div>
           </div>
@@ -122,7 +122,7 @@ export default function Quiz({ aoFinalizar }) {
                 key={opcao.id}
                 onClick={() => selecionarOpcao(pergunta.id, opcao.id)}
                 disabled={enviando}
-                className="w-full text-left px-5 py-4 rounded-xl bg-white border text-gray-800 font-medium text-sm hover:border-rosaCha hover:bg-gray-50 transition duration-200 flex items-center gap-3 group"
+className="w-full text-left px-5 py-4 rounded-xl bg-white border text-gray-800 font-medium text-sm hover:border-rosaCha hover:bg-gray-50 transition duration-200 flex items-center gap-3 group"
                 style={{ cursor: 'url("data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2224%22 height=%2224%22 viewBox=%220 0 24 24%22><path fill=%22%23db2777%22 d=%22M12 21s-6.7-4.3-9.3-8.5C.7 9.3 2 5.5 5.2 4.7 7 4.2 9 5 10.3 6.6 11 7.5 12 8.5 12 8.5s1-1 1.7-1.9C15 5 17 4.2 18.8 4.7c3.2.8 4.5 4.6 2.5 7.8C18.7 16.7 12 21 12 21z%22/></svg>") 12 12, pointer' }}
               >
                 <span className="w-8 h-8 rounded-lg bg-white border flex items-center justify-center text-xs font-bold text-rosaCha group-hover:border-rosaCha group-hover:text-rosaCha transition shrink-0">
