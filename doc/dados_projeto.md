@@ -3,10 +3,10 @@ Dados do Projeto
 Nome do Projeto: Estilosos
 
 Apresentação
-O presente documento descreve as informações fundamentais referentes ao projeto de desenvolvimento de software denominado "Estilosos". O projeto visa abordar a problemática relativa à seleção de vestuário adequado a ocasiões específicas, oferecendo uma solução tecnológica orientada às necessidades dos usuários.
+O presente documento descreve as informações fundamentais referentes ao projeto de desenvolvimento de software denominado "Estilosos". O projeto visa abordar a problemática relativa à identificação do estilo pessoal de vestuário, oferecendo uma solução tecnológica baseada em um quiz interativo de 20 perguntas que mapeia o arquétipo de moda predominante do usuário.
 
 Objetivo do Projeto
-Desenvolver uma aplicação digital que auxiliar indivíduos na identificação e seleção de estilos de vestuário apropriados para momentos e ocasiões diversas, por meio de interface intuitiva e recomendações personalizadas com base em preferências e contexto temporal.
+Desenvolver uma aplicação web interativa que auxilie indivíduos na identificação de seu estilo de vestuário predominante, por meio de um quiz de múltipla escolha com 20 perguntas, resultados personalizados com recomendações de moda e dicas práticas para cada arquétipo.
 
 Equipe de Desenvolvimento
 - Laiara Emanuelly Marinho Barbosa

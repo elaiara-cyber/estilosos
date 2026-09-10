@@ -9,10 +9,9 @@ from dotenv import load_dotenv
 caminho_env = Path(__file__).resolve().parent.parent / '.env'
 load_dotenv(dotenv_path=caminho_env)
 
-from .rotas.lead_rotas import router as lead_router
 from .rotas.quiz_rotas import router as quiz_router
 
-app = FastAPI(title="API OutfitSite - Python")
+app = FastAPI(title="API Estilosos - Quiz de Estilo")
 
 origem_permitida = os.getenv("ORIGEM_PERMITIDA", "*")
 origens = [origem_permitida] if origem_permitida != "*" else ["*"]
@@ -25,7 +24,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(lead_router, prefix="/api")
 app.include_router(quiz_router, prefix="/api")
 
 @app.get("/api/health")
