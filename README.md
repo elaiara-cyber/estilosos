@@ -33,19 +33,20 @@ Orientar pessoas em relação ao estilo de roupa que mais combina com elas.
 O **Estilosos** é um sistema full-stack acadêmico desenvolvido para demonstrar a integração entre uma interface web reativa em React 18 e um servidor de API em Python (FastAPI) com persistência no banco de dados SQLite. O sistema funciona como um recomendador de estilo pessoal, auxiliando usuários na seleção de roupas adequadas a ocasiões específicas por meio de quiz interativo e análise de arquétipos de moda.
 
 A aplicação compreende dois módulos principais:
-1. **Módulo de Recomendação de Estilo:** Quiz interativo com 20 perguntas que identifica o arquétipo de moda do usuário (Minimalista, Streetwear, Classico, Boho, Casual Chic) e fornece dicas personalizadas, com armazenamento de resultados no banco de dados SQLite.
+1. **Módulo de Recomendação de Estilo:** Quiz interativo com 20 perguntas em 4 categorias (Identificação de Estilo e Estética, Rotina e Funcionalidade, Comportamento e Dores do Cliente, Consumo e Guarda-Roupa) que identifica o arquétipo de moda do usuário (Minimalista, Streetwear, Classico, Boho, Casual Chic) e fornece dicas personalizadas, com armazenamento de resultados no banco de dados SQLite.
 2. **Módulo de Gestão de Leads:** Sistema para registro e consulta de leads (potenciais interessados) por meio de interface de formulário, com persistência no banco de dados SQLite e visualização em tempo real via modal.
 
 ---
 
 ## Destaques das Funcionalidades
 
-- **Interface Estética Rose Pink:** Estética moderna com paleta de cores rosa, oferecendo uma experiência visual contemporânea e acolhedora.
+- **Interface Estética Rose Pink:** Estética moderna com paleta de cores rosa (gradiente `from-rosaCha a rosaBebe`), oferecendo uma experiência visual contemporânea e acolhedora.
 - **Quiz Interativo de Estilo:** 20 perguntas em 4 categorias (Identificação de Estilo e Estética, Rotina e Funcionalidade, Comportamento e Dores do Cliente, Consumo e Guarda-Roupa) com 5 arquétipos de moda (Minimalista, Streetwear, Classico, Boho, Casual Chic), barra de progresso animada e navegação fluida entre questões.
 - **Página de Resultados Detalhada:** Exibição do arquétipo vencedor, estilos secundários compatíveis, barra de pontuação completa e dicas práticas de moda.
 - **Modal de Consultas em Tempo Real (`ModalLeads.jsx`):** Permite aos usuários e avaliadores consultar e atualizar a lista de leads cadastrados no SQLite via API rota `GET /api/leads` sem recarregar a página.
-- **Validação e Segurança de Dados:** Sanitização rigorosa contra ataques XSS usando `html.escape` no backend Python (FastAPI) com validadores de e-mail e telefone.
-- **Arquitetura Full-Stack Integrada:** Comunicação assíncrona via fetch entre frontend React 18 e backend Python FastAPI com roteamento CORS configurado.
+- **Validação e Segurança de Dados:** Sanitização rigorosa contra ataques XSS usando `html.escape` no backend Python (FastAPI) com validadores de e-mail e telefone; proteção contra SQL injection via Prepared Statements.
+- **Arquitetura Full-Stack Integrada:** Comunicação assíncrona via fetch entre frontend React 18 e backend Python FastAPI com roteamento CORS configurado e proxy Vite em desenvolvimento.
+- **Identidade Visual Rose Pink:** Gradiente de fundo `from-rosaCha (#FFB6C1) to-rosaBebe (#FFC0CB)`, destaque em `pink-400 (#F472B6)`, cards glassmorphism, botões com gradiente rosa, tipografia Plus Jakarta Sans e animações `animate-pulse-glow`/`animate-float`.
 
 ---
 
@@ -65,17 +66,17 @@ A aplicação compreende dois módulos principais:
 
 ### Frontend (React 18 + Vite + Tailwind CSS)
 - **React 18** — Biblioteca declarativa e baseada em componentes reativos para criação de interfaces modernas.
-- **Vite** — Ferramenta de build de última geração com Hot Module Replacement (HMR) instantâneo.
+- **Vite 5** — Ferramenta de build de última geração com Hot Module Replacement (HMR) instantâneo e proxy de desenvolvimento `/api → :3000`.
 - **Tailwind CSS v3** — Framework CSS utilitário para estilização rápida, responsiva e elegante.
 - **JSX & React Hooks** — Gerenciamento de estado de formulários (`useState`, `useEffect`), máscaras dinâmicas e integração assíncrona com a API via `fetch`.
 
 ### Backend (Python 3 + FastAPI + SQLite)
 - **Python 3.13** — Linguagem principal de desenvolvimento do backend.
-- **FastAPI** — Framework web moderno e de altíssima performance para construção de APIs RESTful.
-- **Uvicorn** — Servidor ASGI ultrarrápido para execução da aplicação FastAPI.
-- **Pydantic & Validadores** — Sanitização de dados contra ataques XSS (`html.escape`), tratamento de erros e validação de e-mails/telefones.
+- **FastAPI >= 0.115** — Framework web moderno e de altíssima performance para construção de APIs RESTful.
+- **Uvicorn >= 0.30** — Servidor ASGI ultrarrápido para execução da aplicação FastAPI.
+- **Pydantic >= 2.0** — Sanitização de dados contra ataques XSS (`html.escape`), validação de schemas, tratamento de erros e validação de e-mails/telefones com `model_validator`.
 - **SQLite (sqlite3)** — Banco de dados relacional leve e embutido com suporte a *Prepared Statements* e modo WAL (Write-Ahead Logging).
-- **CORS Middleware** — Permissão e controle de requisições Cross-Origin entre React e Python.
+- **CORS Middleware** — Permissão e controle de requisições Cross-Origin entre React e Python, configurado via variável de ambiente `ORIGEM_PERMITIDA`.
 
 ---
 
