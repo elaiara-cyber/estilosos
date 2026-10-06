@@ -111,6 +111,7 @@ Este documento especifica os requisitos técnicos de sistema do projeto **Estilo
 | `quiz_estilos` | 5 | Arquétipos de estilo (nome, descrição, dicas, ícone) |
 | `quiz_perguntas` | 20 | Perguntas do quiz com ordenação |
 | `quiz_opcoes` | 100 | Opções de resposta (5 por pergunta) com pontuação JSON |
+| `quiz_sessoes` | Variável | Sessões do quiz (UUID + data de criação; backfill das antigas no startup) |
 | `quiz_respostas` | Variável | Respostas dos usuários por sessão |
 
 ### 5.2 Especificações Técnicas
@@ -124,6 +125,7 @@ Este documento especifica os requisitos técnicos de sistema do projeto **Estilo
 | DB-005 | Inicialização | Script `iniciar_banco.py` cria schema e popula dados seed |
 | DB-006 | Localização | `api/db/landing.db` (arquivo único, sem servidor) |
 | DB-007 | Row Factory | `sqlite3.Row` com `row_factory = dict` para acesso por nome de coluna |
+| DB-008 | Sessões | Tabela `quiz_sessoes` (`id` UUID PK, `criada_em`); resposta/resultado exigem sessão existente (`404` caso contrário) |
 
 ### 5.3 Diagrama ER
 
@@ -147,16 +149,17 @@ Este documento especifica os requisitos técnicos de sistema do projeto **Estilo
                           │ estilos_pontos   │  ← JSON: {"Minimalista": 3}
                           └──────────────────┘
 
-                          ┌──────────────────┐
-                          │ quiz_respostas   │
-                          ├──────────────────┤
-                          │ id (PK)          │
-                          │ sessao_id        │  ← UUID (texto)
-                          │ pergunta_id (FK) │──▶ quiz_perguntas.id
-                          │ opcao_id (FK)    │──▶ quiz_opcoes.id
-                          │ data_resposta    │  ← datetime('now','localtime')
-                          └──────────────────┘
+                           ┌──────────────────┐       ┌──────────────────┐
+                           │  quiz_sessoes    │◀──────│ quiz_respostas   │
+                           ├──────────────────┤  (N:1 ├──────────────────┤
+                           │ id (PK, UUID)    │ valid.│ id (PK)          │
+                           │ criada_em        │ código│ sessao_id        │  ← UUID (texto)
+                           └──────────────────┘       │ pergunta_id (FK) │──▶ quiz_perguntas.id
+                                                      │ opcao_id (FK)    │──▶ quiz_opcoes.id
+                                                      │ data_resposta    │  ← datetime('now','localtime')
+                                                      └──────────────────┘
 ```
+> Integridade `sessao_id → quiz_sessoes.id` garantida em código (`404` se inexistente).
 
 ---
 
@@ -192,11 +195,12 @@ Este documento especifica os requisitos técnicos de sistema do projeto **Estilo
 | Método | Endpoint | Body Request | Body Response | Status |
 |---|---|---|---|---|
 | `GET` | `/api/health` | — | `{sucesso, mensagem}` | 200 |
-| `GET` | `/api/quiz/perguntas` | — | `{sucesso, dados: [...], total}` | 200 |
+| `GET` | `/api/quiz/perguntas` | — | `{sucesso, dados: [...], total: 20}` | 200 |
 | `GET` | `/api/quiz/estilos` | — | `{sucesso, dados: [...]}` | 200 |
-| `POST` | `/api/quiz/sessao` | — | `{sucesso, sessao_id, mensagem}` | 201 |
-| `POST` | `/api/quiz/resposta` | `{sessao_id, pergunta_id, opcao_id}` | `{sucesso, mensagem}` | 201 |
-| `GET` | `/api/quiz/resultado?sessao_id=X` | — | `{sucesso, dados: {principal, secundarios, pontuacoes}}` | 200 |
+| `POST` | `/api/quiz/sessao` | — | `{sucesso, sessao_id (UUID), mensagem}` | 200 |
+| `POST` | `/api/quiz/resposta` | `{sessao_id (min 5), pergunta_id int, opcao_id int}` upsert `DELETE+INSERT` | `{sucesso, mensagem}` / `{sucesso:false, erros}` | 201 / 404 / 422 |
+| `GET` | `/api/quiz/resultado?sessao_id=X` | — | `{sucesso, dados: {sessao_id, total_respostas, estilo_principal, pontuacao_principal/total, estilos_secundarios, todas_pontuacoes}}` | 200 / 404 / 422 |
+| `GET` | `/{full_path}` | — | estático ou `index.html`; JSON 404 se `api*` | 200 / 404 |
 
 ### 6.4 Tratamento de Erros
 
@@ -237,10 +241,10 @@ Este documento especifica os requisitos técnicos de sistema do projeto **Estilo
 
 | Componente | Responsabilidade | Estado |
 |---|---|---|
-| `Onboarding.jsx` | Tela inicial com CTA e informações do quiz | Ativo |
-| `Quiz.jsx` | Renderização de perguntas, seleção de opções, envio de respostas | Ativo |
-| `ResultadoQuiz.jsx` | Exibição de resultados, gráfico de barras, dicas | Ativo |
-| `App.jsx` | Gerenciamento de navegação (landing → quiz → resultado) | Ativo |
+| `Onboarding.jsx` | Tela inicial: badge, título `Descubra seu Estilo`, 4 badges, CTA `Iniciar Quiz de Estilo ➔` | Ativo |
+| `Quiz.jsx` | Perguntas (`Promise.all` perguntas+sessão), contador, progresso, opções numeradas com cursor coração, `Salvando resposta...` | Ativo |
+| `ResultadoQuiz.jsx` | Badge FastAPI+SQLite, `Seu Estilo é:`, principal + `X/Y pontos`, `Dicas Práticas`, `Estilos Compatíveis` (até 2), `Pontuação Completa` em `%`, `Refazer Quiz 🔄` | Ativo |
+| `App.jsx` | Navegação por estado (`landing → quiz → resultado`) | Ativo |
 
 ### 7.3 Fluxo de Navegação
 

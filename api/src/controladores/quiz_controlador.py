@@ -44,7 +44,7 @@ def listar_estilos_controlador():
 
 
 def calcular_resultado_controlador(sessao_id: str):
-    if not sessao_id or len(sessao_id.strip()) < 5:
+    if not sessao_id or not 5 <= len(sessao_id.strip()) <= 100:
         return JSONResponse(
             status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
             content={
@@ -56,6 +56,13 @@ def calcular_resultado_controlador(sessao_id: str):
     conexao = obter_conexao()
     try:
         cursor = conexao.cursor()
+        cursor.execute('SELECT id FROM quiz_sessoes WHERE id = ?', (sessao_id,))
+        if not cursor.fetchone():
+            return JSONResponse(
+                status_code=status.HTTP_404_NOT_FOUND,
+                content={'sucesso': False, 'mensagem': 'Sessão não encontrada. Inicie um novo quiz.'}
+            )
+
         cursor.execute(
             '''SELECT r.opcao_id, o.estilos_pontos
                FROM quiz_respostas r
@@ -128,8 +135,8 @@ def salvar_resposta_controlador(payload: dict):
     opcao_id = payload.get('opcao_id')
 
     erros = []
-    if not sessao_id or len(sessao_id) < 5:
-        erros.append(' sessão_id inválido (mínimo 5 caracteres).')
+    if not sessao_id or not 5 <= len(sessao_id) <= 100:
+        erros.append(' sessão_id inválido (5 a 100 caracteres).')
     if not pergunta_id or not isinstance(pergunta_id, int) or pergunta_id < 1:
         erros.append(' pergunta_id inválido.')
     if not opcao_id or not isinstance(opcao_id, int) or opcao_id < 1:
@@ -148,6 +155,13 @@ def salvar_resposta_controlador(payload: dict):
     conexao = obter_conexao()
     try:
         cursor = conexao.cursor()
+        cursor.execute('SELECT id FROM quiz_sessoes WHERE id = ?', (sessao_id,))
+        if not cursor.fetchone():
+            return JSONResponse(
+                status_code=status.HTTP_404_NOT_FOUND,
+                content={'sucesso': False, 'mensagem': 'Sessão não encontrada. Inicie um novo quiz.'}
+            )
+
         cursor.execute('SELECT id FROM quiz_perguntas WHERE id = ?', (pergunta_id,))
         if not cursor.fetchone():
             return JSONResponse(
@@ -187,6 +201,13 @@ def salvar_resposta_controlador(payload: dict):
 
 def criar_sessao_controlador():
     sessao_id = str(uuid.uuid4())
+    conexao = obter_conexao()
+    try:
+        cursor = conexao.cursor()
+        cursor.execute('INSERT OR IGNORE INTO quiz_sessoes (id) VALUES (?)', (sessao_id,))
+        conexao.commit()
+    finally:
+        conexao.close()
     return {
         'sucesso': True,
         'sessao_id': sessao_id,

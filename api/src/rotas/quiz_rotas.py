@@ -35,5 +35,5 @@ async def salvar_resposta_rota(request: Request):
 
 
 @router.get("/quiz/resultado")
-def calcular_resultado_rota(sessao_id: str = Query(..., min_length=5)):
+def calcular_resultado_rota(sessao_id: str = Query(..., min_length=5, max_length=100)):
     return calcular_resultado_controlador(sessao_id)

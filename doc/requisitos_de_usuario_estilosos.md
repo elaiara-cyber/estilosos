@@ -52,7 +52,7 @@ Segundo a especificação UML 2.5.1 (seção 18.1), um *Actor* especifica um pap
 
 * **UC01 — Iniciar Sessão do Quiz:** O Usuário Final solicita o início de um novo teste; o sistema gera um identificador único de sessão (UUID).
 * **UC02 — Responder Quiz de Estilo:** O Usuário responde às 20 perguntas de múltipla escolha. Cada resposta é enviada individualmente via API.
-* **UC03 — Visualizar Resultado:** O sistema exibe o arquétipo vencedor com ícone, descrição e dicas práticas, além de até 2 estilos secundários compatíveis e um gráfico de barras com a pontuação completa.
+* **UC03 — Visualizar Resultado:** badge `Resultado Calculado via FastAPI + SQLite`, título `Seu Estilo é:`, arquétipo vencedor com ícone/nome/`X pontos de Y possíveis`/descrição/bloco `Dicas Práticas`, até 2 estilos secundários (`Estilos Compatíveis`) e `Pontuação Completa` em barras percentuais.
 * **UC04 — Refazer Quiz:** O Usuário pode reiniciar o questionário, voltando à tela de Onboarding.
 * **UC05 — Monitorar Saúde da API:** Verificação do status do servidor através do endpoint `GET /api/health`.
 
@@ -63,10 +63,10 @@ Segundo a especificação UML 2.5.1 (seção 18.1), um *Actor* especifica um pap
 | Código | Requisito Funcional | Descrição | Prioridade |
 |---|---|---|---|
 | **RF-001** | Criar Sessão do Quiz | O sistema deve gerar uma sessão com ID único (UUID) para cada execução do quiz via `POST /api/quiz/sessao`. | **Alta** |
-| **RF-002** | Exibir Quiz de 20 Questões | O sistema deve renderizar 20 perguntas de múltipla escolha, cada uma com 5 opções. | **Alta** |
-| **RF-003** | Barra de Progresso e Navegação | O frontend deve fornecer navegação fluida com indicador animado de progresso entre as questões. | **Média** |
+| **RF-002** | Exibir Quiz de 20 Questões | 20 perguntas (5 opções cada, 100 total), contador `Pergunta X de 20`, cursor coração, carregamento paralelo perguntas+sessão. | **Alta** |
+| **RF-003** | Barra de Progresso e Navegação | Progresso gradiente animado + navegação por estado sem Router; estados `Carregando perguntas...` / `Salvando resposta...`. | **Média** |
 | **RF-004** | Calcular Arquétipo de Estilo | O backend deve processar a pontuação e definir o estilo vencedor entre: *Minimalista, Streetwear, Clássico, Boho e Casual Chic*. | **Alta** |
-| **RF-005** | Exibir Resultados e Recomendação | A interface deve apresentar o perfil principal com descrição e dicas, ranking secundário (até 2 estilos) e gráfico de barras com pontuação completa. | **Alta** |
+| **RF-005** | Exibir Resultados e Recomendação | Perfil principal + `X/Y pontos`, `Dicas Práticas`, ranking secundário (até 2) e `Pontuação Completa` em `%`; botão `Refazer Quiz 🔄`. | **Alta** |
 | **RF-006** | Refazer Quiz | O usuário deve poder reiniciar o questionário a qualquer momento pela tela de resultados. | **Média** |
 | **RF-007** | Health Check da API | O sistema deve disponibilizar um endpoint de verificação de saúde (`GET /api/health`). | **Baixa** |
 

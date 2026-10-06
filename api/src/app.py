@@ -10,11 +10,20 @@ caminho_env = Path(__file__).resolve().parent.parent / '.env'
 load_dotenv(dotenv_path=caminho_env)
 
 from .rotas.quiz_rotas import router as quiz_router
+from .middlewares.seguranca import RateLimitMiddleware, SecurityHeadersMiddleware
 
 app = FastAPI(title="API Estilosos - Quiz de Estilo")
 
 origem_permitida = os.getenv("ORIGEM_PERMITIDA", "*")
-origens = [origem_permitida] if origem_permitida != "*" else ["*"]
+origens = [o.strip() for o in origem_permitida.split(",") if o.strip()] or ["*"]
+
+try:
+    limite_requisicoes = max(1, int(os.getenv("RATE_LIMIT_PER_MINUTE", "60")))
+except ValueError:
+    limite_requisicoes = 60
+
+app.add_middleware(SecurityHeadersMiddleware)
+app.add_middleware(RateLimitMiddleware, limite_por_minuto=limite_requisicoes)
 
 app.add_middleware(
     CORSMiddleware,

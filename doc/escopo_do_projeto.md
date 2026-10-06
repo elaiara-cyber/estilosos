@@ -21,16 +21,21 @@ Desenvolver uma aplicação web interativa onde os usuários respondem a um ques
 * Botão CTA "Iniciar Quiz de Estilo" com gradiente rosa.
 
 ### B. Quiz Interativo (20 Perguntas)
-* Série de 20 perguntas de múltipla escolha, cada uma com 5 opções.
-* Barra de progresso animada indicando a etapa atual.
-* Envio assíncrono de cada resposta via `POST /api/quiz/resposta`.
-* Gerenciamento de sessão com UUID único.
+* Série de 20 perguntas de múltipla escolha, cada uma com 5 opções (100 opções no total, seed em `api/iniciar_banco.py`).
+* Contador `Pergunta X de 20` + barra de progresso animada em gradiente rosa.
+* Opções numeradas com cursor customizado de coração rosa e hover `hover:border-rosaCha`.
+* Carregamento paralelo via `Promise.all`: `GET /api/quiz/perguntas` + `POST /api/quiz/sessao`.
+* Envio assíncrono de cada resposta via `POST /api/quiz/resposta` (upsert por sessão).
+* Estados: `Carregando perguntas...`, `Salvando resposta...`, erro + `Tentar novamente`.
+* Gerenciamento de sessão com UUID único (sem tabela de sessão — apenas `quiz_respostas.sessao_id`).
 
 ### C. Página de Resultados
-* **Arquétipo Principal:** Exibição do estilo vencedor com ícone, nome, descrição detalhada e dicas práticas.
-* **Estilos Secundários:** Até 2 estilos compatíveis exibidos como sugestões.
-* **Gráfico de Barras:** Visualização completa da pontuação dos 5 estilos.
-* **Refazer Quiz:** Opção para reiniciar o questionário.
+* Badge `Resultado Calculado via FastAPI + SQLite` + título `Seu Estilo é:`.
+* **Arquétipo Principal:** estilo vencedor com ícone (5xl), nome, `X pontos de Y possíveis`, descrição integral e bloco `Dicas Práticas`.
+* **Estilos Secundários:** até 2 estilos compatíveis em grid (`Estilos Compatíveis`).
+* **Pontuação Completa:** barras em percentual (`%`) com gradiente rosa.
+* **Refazer Quiz:** botão `Refazer Quiz 🔄` volta ao Onboarding; estado `Calculando seu estilo...` + erro com `Refazer Quiz`.
+* Navegação por `useState` em `App.jsx` (sem React Router): `landing → quiz → resultado`.
 
 ---
 

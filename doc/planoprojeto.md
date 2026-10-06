@@ -55,11 +55,11 @@ A estética oficial do projeto é o tema claro **Rose Pink**, definida no `tailw
 
 ### Telas Ativas (montadas pelo `App.jsx`)
 
-1. **Onboarding** — tela inicial com badge "Recomendador de Estilo Pessoal", título "Descubra seu **Estilo**" (destaque sólido em `pink-400`), badges informativos (20 Perguntas, 5 Estilos, Resultado Instantâneo, React + FastAPI + SQLite) e CTA de início.
-2. **Quiz** — cartão branco com pergunta atual, contador "Pergunta X de 20", barra de progresso gradiente e opções numeradas com hover rosa; envio assíncrono de cada resposta.
-3. **ResultadoQuiz** — arquétipo vencedor com ícone, pontuação, dicas práticas, estilos secundários compatíveis e gráfico de barras com a pontuação completa dos 5 estilos.
+1. **Onboarding** — badge "Recomendador de Estilo Pessoal", título "Descubra seu **Estilo**" (destaque sólido em `pink-400`), parágrafo descritivo, 4 badges (20 Perguntas, 5 Estilos, Resultado Instantâneo, React + FastAPI + SQLite), CTA "Iniciar Quiz de Estilo ➔" e créditos Laiara & Yasmim.
+2. **Quiz** — contador "Pergunta X de 20", barra de progresso gradiente (`duration-500`), card branco com pergunta + opções numeradas (cursor coração rosa custom via inline SVG), estados "Carregando perguntas...", "Salvando resposta..." e erro + "Tentar novamente"; `Promise.all` para perguntas+sessão.
+3. **ResultadoQuiz** — badge "Resultado Calculado via FastAPI + SQLite", "Seu Estilo é:", ícone 5xl, `X pontos de Y possíveis`, descrição, bloco "Dicas Práticas", "Estilos Compatíveis" (grid até 2) e "Pontuação Completa" em `%` com barras gradiente (`duration-700`); CTA "Refazer Quiz 🔄"; loading "Calculando seu estilo...".
 
-> **Nota:** os componentes de landing page legados (`Header.jsx`, `Hero.jsx`, `Beneficios.jsx`, `FormularioLead.jsx`, `ModalLeads.jsx`, `Toast.jsx` e `Footer.jsx`) permanecem no diretório `frontend/src/components/` para uso futuro, mas não são montados pelo `App.jsx` na navegação atual.
+> **Nota:** componentes legados da landing page antiga e o protótipo `quiz-interface.html` foram removidos do repositório — o frontend contém apenas os 3 componentes do quiz. Não há endpoints `/api/leads` no backend.
 
 ---
 
@@ -114,46 +114,42 @@ A estética oficial do projeto é o tema claro **Rose Pink**, definida no `tailw
 ```
 estilosos/
 ├── api/
-│   ├── main.py                          # Entrypoint principal (Uvicorn)
-│   ├── iniciar_banco.py                 # Criação e seed do banco SQLite
-│   ├── requirements.txt                 # Dependências Python
-│   ├── db/landing.db                    # Banco SQLite (WAL mode)
+│   ├── main.py                          # Entrypoint Uvicorn (PORT=3000, inicializa banco)
+│   ├── iniciar_banco.py                 # Schema quiz_* + seed (5 estilos, 20 perguntas, 100 opções)
+│   ├── requirements.txt                 # fastapi, uvicorn, pydantic, python-dotenv
+│   ├── package.json                     # Atalho legado
+│   ├── db/landing.db                    # SQLite WAL (ignorado no git)
 │   └── src/
 │       ├── __init__.py
-│       ├── app.py                       # FastAPI app, CORS, router, SPA fallback
+│       ├── app.py                       # FastAPI app, CORS, router, estáticos + SPA fallback
+│       ├── server.js / server.py        # LEGADOS (não usados)
 │       ├── config/
-│       │   └── conexao_banco.py         # Conexão SQLite com row_factory dict
+│       │   └── conexao_banco.py         # dict_factory + WAL + foreign_keys ON
 │       ├── controladores/
-│       │   └── quiz_controlador.py      # Lógica do quiz (sessão, respostas, resultado)
+│       │   └── quiz_controlador.py      # Sessão UUID, upsert DELETE+INSERT, cálculo resultado
 │       ├── rotas/
-│       │   └── quiz_rotas.py            # Endpoints RESTful do quiz
+│       │   └── quiz_rotas.py            # /quiz/perguntas, /quiz/estilos, /quiz/sessao, /quiz/resposta, /quiz/resultado
 │       └── utilitarios/
-│           └── validadores.py           # Sanitização anti-XSS (html.escape)
+│           └── validadores.py           # sanitizar() com html.escape
 ├── frontend/
-│   ├── index.html                       # Entry HTML (Google Fonts: Plus Jakarta Sans)
-│   ├── vite.config.js                   # Config Vite com proxy /api → localhost:3000
-│   ├── tailwind.config.js               # Cores rosaCha, rosaBebe + animações custom
+│   ├── index.html                       # pt-BR, title Estilosos, Plus Jakarta Sans + Fira Code
+│   ├── vite.config.js                   # 5173 + proxy /api → localhost:3000
+│   ├── tailwind.config.js               # rosaCha #FFB6C1, rosaBebe #FFC0CB
 │   ├── postcss.config.js
-│   ├── package.json
+│   ├── package.json                     # react 18, vite 5, tailwind 3
 │   └── src/
-│       ├── main.jsx                     # Entry React (StrictMode)
-│       ├── App.jsx                      # Navegação: Onboarding → Quiz → ResultadoQuiz
-│       ├── index.css                    # Estilos globais, glassmorphism, gradientes
+│       ├── main.jsx                     # StrictMode
+│       ├── App.jsx                      # landing → quiz → resultado (useState)
+│       ├── index.css                    # gradiente global, glass-card/light, float/pulse-glow
 │       └── components/
-│           ├── Onboarding.jsx           # Tela inicial do quiz (ATIVO)
-│           ├── Quiz.jsx                 # Interface do quiz (ATIVO)
-│           ├── ResultadoQuiz.jsx        # Tela de resultados (ATIVO)
-│           ├── Header.jsx               # (LEGADO - não montado)
-│           ├── Hero.jsx                 # (LEGADO - não montado)
-│           ├── Beneficios.jsx           # (LEGADO - não montado)
-│           ├── FormularioLead.jsx       # (LEGADO - não montado)
-│           ├── ModalLeads.jsx           # (LEGADO - não montado)
-│           ├── Toast.jsx                # (LEGADO - não montado)
-│           └── Footer.jsx               # (LEGADO - não montado)
+│           ├── Onboarding.jsx           # Tela inicial do quiz
+│           ├── Quiz.jsx                 # Interface do quiz
+│           └── ResultadoQuiz.jsx        # Tela de resultados
 └── doc/
     ├── dados_projeto.md
     ├── escopo_do_projeto.md
     ├── planoprojeto.md
+    ├── requisitos_de_sistema.md
     └── requisitos_de_usuario_estilosos.md
 ```
 
@@ -161,15 +157,15 @@ estilosos/
 
 ## 4. Mapa de Endpoints da API
 
-| Método | Endpoint | Descrição |
-|---|---|---|
-| `GET` | `/api/health` | Health check — status da API |
-| `GET` | `/api/quiz/perguntas` | Lista todas as 20 perguntas com suas opções |
-| `GET` | `/api/quiz/estilos` | Lista os 5 arquétipos de estilo |
-| `POST` | `/api/quiz/sessao` | Cria uma nova sessão de quiz (gera UUID) |
-| `POST` | `/api/quiz/resposta` | Salva uma resposta do quiz (sessao_id, pergunta_id, opcao_id) |
-| `GET` | `/api/quiz/resultado` | Calcula e retorna o resultado do quiz (?sessao_id=...) |
-| `GET` | `/{full_path}` | SPA fallback — serve arquivos estáticos ou index.html |
+| Método | Endpoint | Descrição | Status |
+|---|---|---|---|
+| `GET` | `/api/health` | Health check — `{sucesso, mensagem}` | 200 |
+| `GET` | `/api/quiz/perguntas` | 20 perguntas + opções (`{sucesso, dados, total}`) | 200 |
+| `GET` | `/api/quiz/estilos` | 5 arquétipos | 200 |
+| `POST` | `/api/quiz/sessao` | Nova sessão UUID (sem persistência) | 200 |
+| `POST` | `/api/quiz/resposta` | Upsert `DELETE+INSERT` por sessão; valida FKs | 201 / 404 / 422 |
+| `GET` | `/api/quiz/resultado?sessao_id=...` | `{estilo_principal, pontuacao_principal/total, estilos_secundarios, todas_pontuacoes}` | 200 / 404 / 422 |
+| `GET` | `/{full_path}` | SPA fallback — estáticos ou index.html; 404 JSON se `api*` | 200 / 404 |
 
 ---
 

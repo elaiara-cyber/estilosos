@@ -43,11 +43,23 @@ def inicializar_banco():
             FOREIGN KEY (opcao_id) REFERENCES quiz_opcoes(id)
         );
 
+        CREATE TABLE IF NOT EXISTS quiz_sessoes (
+            id          TEXT PRIMARY KEY,
+            criada_em   TEXT DEFAULT (datetime('now','localtime'))
+        );
+
         CREATE INDEX IF NOT EXISTS idx_quiz_opcoes_pergunta ON quiz_opcoes(pergunta_id);
         CREATE INDEX IF NOT EXISTS idx_quiz_respostas_sessao ON quiz_respostas(sessao_id);
     ''')
 
     _popular_dados_quiz(conexao)
+
+    # Backfill: registra sessões antigas que já têm respostas mas
+    # foram criadas antes da tabela quiz_sessoes existir.
+    conexao.execute(
+        'INSERT OR IGNORE INTO quiz_sessoes (id) '
+        'SELECT DISTINCT sessao_id FROM quiz_respostas'
+    )
 
     conexao.commit()
     conexao.close()
